@@ -12,7 +12,6 @@ body {
 }
 
 body {
-  /* A nice desert sand color gradient */
   background: radial-gradient(circle at center, #e0c9a3 0%, #c2a67a 100%);
   cursor: crosshair;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -25,40 +24,98 @@ body {
   height: 100vh;
 }
 
-.ui-layer {
+/* ── Floating Score (top-left, always visible, small) ── */
+.score-floating {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-  pointer-events: none;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #3b2f2f;
-  text-shadow: 1px 1px 3px rgba(255,255,255,0.5);
-}
-
-.title {
-  font-size: 48px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  margin-bottom: 5px;
-}
-
-.score-board {
-  font-size: 32px;
-  font-weight: bold;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 10px 30px;
-  border-radius: 20px;
-  border: 2px solid rgba(255,255,255,0.6);
-  margin-bottom: 10px;
-}
-
-.instructions {
+  top: 16px;
+  left: 16px;
+  z-index: 20;
   font-size: 18px;
-  font-weight: 500;
-  opacity: 0.8;
+  font-weight: 700;
+  color: #3b2f2f;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(6px);
+  padding: 6px 16px;
+  border-radius: 30px;
+  border: 1.5px solid rgba(255,255,255,0.7);
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ── Info Button (bottom-left, circular, expands on hover) ── */
+.info-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 20;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(59, 47, 47, 0.7);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+.info-icon {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  transition: opacity 0.25s ease;
+}
+
+/* Hidden panel inside */
+.info-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 260px;
+  padding: 16px 18px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.info-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.info-line {
+  font-size: 13px;
+  color: rgba(255,255,255,0.88);
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+
+/* ── Hover: expand circle into rounded panel ── */
+.info-btn:hover {
+  width: 260px;
+  height: auto;
+  min-height: 140px;
+  border-radius: 16px;
+  background: rgba(59, 47, 47, 0.88);
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.info-btn:hover .info-icon {
+  opacity: 0;
+  position: absolute;
+}
+
+.info-btn:hover .info-panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }

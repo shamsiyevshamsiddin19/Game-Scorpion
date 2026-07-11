@@ -7,12 +7,21 @@
   <link rel="stylesheet" href="main.css" />
 </head>
 <body>
-  <div class="ui-layer">
-    <div class="title">Scorpion Hunter</div>
-    <div class="score-board">Score: <span id="score">0</span></div>
-    <div class="instructions">Move mouse to hunt. Click to strike!</div>
+
+  <!-- Score (always visible, small, top-left) -->
+  <div class="score-floating" id="scoreFloating">🏆 <span id="score">0</span></div>
+
+  <!-- Info button (circle, hover to expand) -->
+  <div class="info-btn" id="infoBtn">
+    <span class="info-icon">?</span>
+    <div class="info-panel">
+      <div class="info-title">🦂 Scorpion Hunter</div>
+      <div class="info-line">🖱️ Sichqonchani harakatlantiring</div>
+      <div class="info-line">🎯 Hasharotlarga yaqinlashing</div>
+      <div class="info-line">⚡ Click qilib zarba bering!</div>
+    </div>
   </div>
-  
+
   <canvas id="canvas"></canvas>
 
   <script src="main.js"></script>
