@@ -3,27 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Scorpion Hunter Game</title>
+  <title>Desert Hunter Game</title>
   <link rel="stylesheet" href="main.css" />
 </head>
 <body>
 
-  <!-- Score (always visible, small, top-left) -->
-  <div class="score-floating" id="scoreFloating">🏆 <span id="score">0</span></div>
+  <!-- ── Selection Screen ── -->
+  <div class="select-screen" id="selectScreen">
+    <div class="select-bg"></div>
+    <div class="select-content">
+      <h1 class="select-title">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#e8d5a8" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="8" r="5"/><path d="M3 21c0-4.97 4.03-9 9-9s9 4.03 9 9"/>
+        </svg>
+        Sahro Ovchisi
+      </h1>
+      <p class="select-subtitle">Hayvonni tanlang va ovni boshlang!</p>
 
-  <!-- Info button (circle, hover to expand) -->
-  <div class="info-btn" id="infoBtn">
-    <span class="info-icon">?</span>
-    <div class="info-panel">
-      <div class="info-title">🦂 Scorpion Hunter</div>
-      <div class="info-line">🖱️ Sichqonchani harakatlantiring</div>
-      <div class="info-line">🎯 Hasharotlarga yaqinlashing</div>
-      <div class="info-line">⚡ Click qilib zarba bering!</div>
+      <div class="animal-cards" id="animalCards">
+
+        <div class="animal-card" data-animal="scorpion">
+          <div class="card-icon">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <path d="M50 65 Q45 55 35 50 Q30 48 25 52 L18 48 M50 65 Q55 55 65 50 Q70 48 75 52 L82 48" stroke="#7a5030" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <ellipse cx="50" cy="68" rx="12" ry="8" fill="#6b4226"/>
+              <ellipse cx="50" cy="78" rx="10" ry="6" fill="#5a3318"/>
+              <path d="M50 84 Q48 90 52 95 Q54 92 50 84" stroke="#3a1a08" stroke-width="2" fill="#4a2810"/>
+              <circle cx="3" cy="1" r="2" fill="#00ff66" opacity="0.7" transform="translate(52,92)"/>
+              <circle cx="47" cy="64" r="1.5" fill="#111"/>
+              <circle cx="53" cy="64" r="1.5" fill="#111"/>
+            </svg>
+          </div>
+          <div class="card-name">Chayon</div>
+          <div class="card-desc">Qisqichlari va zaharli dumi bilan ov qiladi</div>
+        </div>
+
+        <div class="animal-card" data-animal="snake">
+          <div class="card-icon">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <path d="M20 50 Q30 30 40 50 Q50 70 60 50 Q70 30 80 50" stroke="#4a7a30" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <ellipse cx="82" cy="50" rx="7" ry="5" fill="#3a6a20"/>
+              <circle cx="80" cy="48" r="1.5" fill="#ff2200"/>
+              <circle cx="85" cy="48" r="1.5" fill="#ff2200"/>
+              <path d="M88 50 L94 48 M88 50 L94 52" stroke="#cc0000" stroke-width="1" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="card-name">Ilon</div>
+          <div class="card-desc">To'lqinsimon harakatlanib, chaqib ov qiladi</div>
+        </div>
+
+        <div class="animal-card" data-animal="lizard">
+          <div class="card-icon">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <ellipse cx="55" cy="50" rx="18" ry="8" fill="#8a7a40"/>
+              <ellipse cx="75" cy="50" rx="8" ry="6" fill="#9a8a50"/>
+              <path d="M37 50 Q20 50 10 52" stroke="#7a6a30" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <line x1="48" y1="42" x2="38" y2="30" stroke="#7a6a30" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="48" y1="58" x2="38" y2="70" stroke="#7a6a30" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="62" y1="42" x2="72" y2="30" stroke="#7a6a30" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="62" y1="58" x2="72" y2="70" stroke="#7a6a30" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="73" cy="47" r="1.8" fill="#111"/>
+              <circle cx="78" cy="47" r="1.8" fill="#111"/>
+            </svg>
+          </div>
+          <div class="card-name">Kaltakesak</div>
+          <div class="card-desc">Tez yugurib, to'xtab, tilini chiqarib ov qiladi</div>
+        </div>
+
+        <div class="animal-card" data-animal="frog">
+          <div class="card-icon">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <ellipse cx="50" cy="58" rx="20" ry="16" fill="#3a8a30"/>
+              <circle cx="40" cy="40" r="8" fill="#2a7a20"/>
+              <circle cx="60" cy="40" r="8" fill="#2a7a20"/>
+              <circle cx="40" cy="38" r="4" fill="#ffd700"/>
+              <circle cx="60" cy="38" r="4" fill="#ffd700"/>
+              <circle cx="40" cy="38" r="2" fill="#111"/>
+              <circle cx="60" cy="38" r="2" fill="#111"/>
+              <path d="M35 75 L25 85 M38 76 L32 86 M41 76 L38 86" stroke="#2a7a20" stroke-width="2" stroke-linecap="round"/>
+              <path d="M65 75 L75 85 M62 76 L68 86 M59 76 L62 86" stroke="#2a7a20" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="card-name">Qurbaqa</div>
+          <div class="card-desc">Sakrab, uzun tili bilan hasharotlarni tutadi</div>
+        </div>
+
+      </div>
     </div>
   </div>
 
-  <canvas id="canvas"></canvas>
+  <!-- ── In-Game UI ── -->
+  <div class="game-ui" id="gameUI" style="display:none;">
+    <div class="score-floating" id="scoreFloating">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#c8a84e" stroke="#8a6e2e" stroke-width="1.5">
+        <path d="M6 9V2h12v7a6 6 0 01-12 0z"/><path d="M6 4H3v3a3 3 0 003 3M18 4h3v3a3 3 0 01-3 3" fill="none" stroke="#8a6e2e" stroke-width="1.5"/><line x1="12" y1="15" x2="12" y2="19"/><rect x="8" y="19" width="8" height="2" rx="1"/>
+      </svg>
+      <span id="score">0</span>
+    </div>
 
+    <div class="info-btn" id="infoBtn">
+      <svg class="info-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><circle cx="12" cy="8" r="0.5" fill="#fff"/>
+      </svg>
+      <div class="info-panel">
+        <div class="info-title" id="infoTitle">Sahro Ovchisi</div>
+        <div class="info-line">Sichqonchani harakatlantiring</div>
+        <div class="info-line">Hasharotlarga yaqinlashing</div>
+        <div class="info-line">Click qilib ov qiling!</div>
+      </div>
+    </div>
+
+    <button class="back-btn" id="backBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Ortga
+    </button>
+  </div>
+
+  <canvas id="canvas"></canvas>
   <script src="main.js"></script>
 </body>
 </html>

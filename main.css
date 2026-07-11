@@ -4,16 +4,14 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
 body {
-  background: radial-gradient(circle at center, #e0c9a3 0%, #c2a67a 100%);
-  cursor: crosshair;
+  background: #1a1408;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   user-select: none;
 }
@@ -24,25 +22,131 @@ body {
   height: 100vh;
 }
 
-/* ── Floating Score (top-left, always visible, small) ── */
+/* ======================================
+   SELECTION SCREEN
+   ====================================== */
+.select-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, #3a2a10 0%, #1a1208 70%, #0a0804 100%);
+}
+
+.select-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 900px;
+  padding: 20px;
+}
+
+.select-title {
+  font-size: 42px;
+  font-weight: 800;
+  color: #e8d5a8;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.select-subtitle {
+  font-size: 16px;
+  color: #a89870;
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
+}
+
+.animal-cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.animal-card {
+  width: 180px;
+  padding: 24px 16px 20px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.04);
+  border: 2px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.animal-card:hover {
+  background: rgba(232, 213, 168, 0.12);
+  border-color: rgba(232, 213, 168, 0.35);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 20px rgba(232,213,168,0.08);
+}
+
+.animal-card:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+.card-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.03);
+  border-radius: 50%;
+  margin-bottom: 4px;
+}
+
+.card-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e8d5a8;
+  letter-spacing: 0.5px;
+}
+
+.card-desc {
+  font-size: 12px;
+  color: #8a7a60;
+  line-height: 1.4;
+}
+
+/* ======================================
+   GAME UI
+   ====================================== */
 .score-floating {
   position: fixed;
   top: 16px;
   left: 16px;
   z-index: 20;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: #3b2f2f;
   background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(6px);
-  padding: 6px 16px;
+  padding: 6px 18px;
   border-radius: 30px;
   border: 1.5px solid rgba(255,255,255,0.7);
   pointer-events: none;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* ── Info Button (bottom-left, circular, expands on hover) ── */
 .info-btn {
   position: fixed;
   bottom: 24px;
@@ -63,19 +167,16 @@ body {
   overflow: hidden;
 }
 
-.info-icon {
-  font-size: 20px;
-  font-weight: 800;
-  color: #fff;
+.info-icon-svg {
   transition: opacity 0.25s ease;
+  flex-shrink: 0;
 }
 
-/* Hidden panel inside */
 .info-panel {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 260px;
+  width: 240px;
   padding: 16px 18px;
   opacity: 0;
   pointer-events: none;
@@ -84,32 +185,30 @@ body {
 }
 
 .info-title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
   color: #fff;
   margin-bottom: 10px;
-  letter-spacing: 0.5px;
 }
 
 .info-line {
-  font-size: 13px;
-  color: rgba(255,255,255,0.88);
-  margin-bottom: 5px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 4px;
   line-height: 1.4;
 }
 
-/* ── Hover: expand circle into rounded panel ── */
 .info-btn:hover {
-  width: 260px;
+  width: 240px;
   height: auto;
-  min-height: 140px;
-  border-radius: 16px;
-  background: rgba(59, 47, 47, 0.88);
+  min-height: 130px;
+  border-radius: 14px;
+  background: rgba(59, 47, 47, 0.9);
   align-items: flex-start;
   justify-content: flex-start;
 }
 
-.info-btn:hover .info-icon {
+.info-btn:hover .info-icon-svg {
   opacity: 0;
   position: absolute;
 }
@@ -118,4 +217,31 @@ body {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+}
+
+/* Back button */
+.back-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 30px;
+  background: rgba(59, 47, 47, 0.6);
+  backdrop-filter: blur(6px);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.back-btn:hover {
+  background: rgba(59, 47, 47, 0.85);
+  border-color: rgba(255,255,255,0.4);
 }
